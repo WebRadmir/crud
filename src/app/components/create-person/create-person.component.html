@@ -1,0 +1,105 @@
+<ng-container>
+  <button
+    mat-flat-button
+    class="addPerson"
+    color="primary"
+    (click)="toggleForm()"
+    #createBtn
+  >
+    {{ showForm ? "- Скрыть форму" : "+ Добавить пользователя" }}
+  </button>
+
+  <div *ngIf="showForm">
+    <form [formGroup]="form" class="card">
+      <mat-form-field class="form-control" appearance="outline">
+        <mat-label>Имя</mat-label>
+        <input matInput placeholder="Имя" formControlName="firstname" />
+        <mat-error *ngIf="form.get('firstname')?.hasError('required')"
+          >Введите имя</mat-error
+        >
+        <mat-error *ngIf="form.get('firstname')?.hasError('pattern')"
+          >Только русский и английский алфавит</mat-error
+        >
+        <mat-error *ngIf="form.get('firstname')?.hasError('hasSpaces')"
+          >Не используйте пробелы</mat-error
+        >
+        <mat-error *ngIf="form.get('firstname')?.hasError('maxlength')"
+          >Максимальное количество символов -
+          {{ form.get("firstname")?.getError("maxlength")?.requiredLength
+          }}<br />Сейчас введено -
+          {{
+            form.get("firstname")?.getError("maxlength")?.actualLength
+          }}</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field class="form-control" appearance="outline">
+        <mat-label>Фамилия</mat-label>
+        <input matInput placeholder="Фамилия" formControlName="lastname" />
+        <mat-error *ngIf="form.get('lastname')?.hasError('required')"
+          >Введите имя</mat-error
+        >
+        <mat-error *ngIf="form.get('lastname')?.hasError('pattern')"
+          >Только русский и английский алфавит</mat-error
+        >
+        <mat-error *ngIf="form.get('lastname')?.hasError('hasSpaces')"
+          >Не используйте пробелы</mat-error
+        >
+        <mat-error *ngIf="form.get('lastname')?.hasError('maxlength')"
+          >Максимальное количество символов -
+          {{ form.get("lastname")?.getError("maxlength")?.requiredLength
+          }}<br />Сейчас введено -
+          {{
+            form.get("lastname")?.getError("maxlength")?.actualLength
+          }}</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field class="form-control" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          type="email"
+          placeholder="Н-р. angular@gmail.com"
+          formControlName="email"
+        />
+
+        <mat-error *ngIf="form.get('email')?.hasError('required')"
+          >Введите email</mat-error
+        >
+        <mat-error *ngIf="form.get('email')?.hasError('email')"
+          >Введите корректный email</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field class="form-control" appearance="outline">
+        <mat-label>Возраст</mat-label>
+        <input matInput required formControlName="age" maxlength="3" />
+        <mat-error *ngIf="form.get('age')?.hasError('required')"
+          >Укажите возраст</mat-error
+        >
+        <mat-error *ngIf="form.get('age')?.hasError('pattern')"
+          >Введите число</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field class="form-control" appearance="outline">
+        <mat-label>Пол</mat-label>
+        <mat-select disableRipple formControlName="gender">
+          <mat-option value="Мужской">Мужской</mat-option>
+          <mat-option value="Женский">Женский</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        class="btn"
+        type="submit"
+        color="primary"
+        (click)="createPerson()"
+      >
+        Создать
+      </button>
+    </form>
+  </div>
+</ng-container>

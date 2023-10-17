@@ -1,1 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-mdc-form-field-hint-wrapper,
+.mat-mdc-form-field-error-wrapper {
+  position: inherit !important;
+}
+
+.mat-mdc-form-field-bottom-align::before {
+  display: inline !important;
+}
+
+.form-control {
+  margin-top: 0.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 40px 20px;
+  box-shadow: 0px 2px 4px #343333;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+button[type="submit"] {
+  width: 100%;
+}

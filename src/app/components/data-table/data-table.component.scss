@@ -1,0 +1,17 @@
+table {
+  width: 100%;
+}
+
+.mat-mdc-icon-button.mat-mdc-button-base {
+  padding: 5px;
+}
+
+.mat-column-actions {
+  white-space: nowrap;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+  border-top: 1px solid #bbbbbb;
+  border-bottom: 1px solid #bbbbbb;
+  background-color: #ededed;
+}
