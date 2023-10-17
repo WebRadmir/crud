@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { catchError, take } from 'rxjs';
+import { take } from 'rxjs';
 
 import { Person } from 'src/app/services/httpClients/http-clients.types';
 import { HttpClientsService } from 'src/app/services/httpClients/http-clients.service';
@@ -43,7 +43,7 @@ export class DataTableComponent implements OnInit, OnDestroy {
   public updatePerson(element: Person): void {
     this.httpClient
       .updatePerson(element)
-      .pipe(take(1), catchError(this.httpClient.handleError))
+      .pipe(take(1))
       .subscribe(() => {
         this.notification.informationStick('Данные успешно обновлены');
       });
@@ -53,7 +53,7 @@ export class DataTableComponent implements OnInit, OnDestroy {
   public deletePerson(id: string): void {
     this.httpClient
       .deletePerson(id)
-      .pipe(take(1), catchError(this.httpClient.handleError))
+      .pipe(take(1))
       .subscribe(() => {
         this.notification.informationStick('Пользователь успешно удален');
       });
@@ -64,11 +64,14 @@ export class DataTableComponent implements OnInit, OnDestroy {
       width: '250px',
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result === true) {
-        this.deletePerson(id);
-      }
-    });
+    dialogRef
+      .afterClosed()
+      .pipe(take(1))
+      .subscribe((result) => {
+        if (result === true) {
+          this.deletePerson(id);
+        }
+      });
   }
 
   public toggleEditing(element: Person): void {

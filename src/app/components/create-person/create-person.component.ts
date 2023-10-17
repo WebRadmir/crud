@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { catchError, take } from 'rxjs';
+import { take } from 'rxjs';
 
 import { Person } from 'src/app/services/httpClients/http-clients.types';
 import { HttpClientsService } from 'src/app/services/httpClients/http-clients.service';
@@ -54,7 +54,7 @@ export class CreatePersonComponent {
       };
       this.httpClient
         .createPerson(newPersonData)
-        .pipe(take(1), catchError(this.httpClient.handleError))
+        .pipe(take(1))
         .subscribe(() => {
           this.notification.informationStick('Пользователь успешно добавлен');
         });

@@ -10,8 +10,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
-import { AppRoutingModule } from 'src/app/app-routing.module';
-
 @NgModule({
   declarations: [],
   imports: [
@@ -24,7 +22,6 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
     MatDialogModule,
     ReactiveFormsModule,
     FormsModule,
-    AppRoutingModule,
     MatSnackBarModule,
   ],
   exports: [
@@ -37,7 +34,6 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
     MatDialogModule,
     ReactiveFormsModule,
     FormsModule,
-    AppRoutingModule,
     MatSnackBarModule,
   ],
 })
