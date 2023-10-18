@@ -57,7 +57,7 @@ export class HttpClientsService {
   }
 
   public deletePerson(id: string): Observable<void> {
-    return this.http.delete<void>(this.resourseUrl + id).pipe(
+    return this.http.delete<void>(`${this.resourseUrl}${id}`).pipe(
       tap(() => {
         const newData = this.dataSubject.value.filter(
           (item) => item._id !== id
@@ -69,15 +69,13 @@ export class HttpClientsService {
   }
 
   public updatePerson(element: Person): Observable<Person> {
+    const { _id, ...updateData } = element;
+
     return this.http
       .put<Person>(
-        this.resourseUrl + element._id,
+        `${this.resourseUrl}${_id}`,
         {
-          firstname: element.firstname,
-          lastname: element.lastname,
-          email: element.email,
-          age: +element.age,
-          gender: element.gender,
+          ...updateData,
           editing: false,
         },
         {
